@@ -19,7 +19,6 @@ import com.fse.projmanagement.dao.repo.ParentTaskRepository;
 import com.fse.projmanagement.dao.repo.ProjectRepository;
 import com.fse.projmanagement.dao.repo.TaskRepository;
 import com.fse.projmanagement.dao.repo.UserRepository;
-import com.fse.projmanagement.model.Project;
 import com.fse.projmanagement.model.Task;
 import com.fse.projmanagement.service.TaskManagementService;
 
@@ -83,7 +82,7 @@ public class TaskManagementServiceImpl implements TaskManagementService {
 
 		TaskDao updatedTask = taskRepository.saveAndFlush(taskDao);
 		if (Objects.nonNull(updatedTask)) {
-			logger.info("Project updated successfully for Id: : " + updatedTask.getTaskId());
+			logger.info("Task updated successfully for Id: : " + updatedTask.getTaskId());
 			return taskToBeUpdated;
 		}
 		return null;
@@ -93,7 +92,7 @@ public class TaskManagementServiceImpl implements TaskManagementService {
 	public List<Task> fetchTasks() {
 		List<TaskDao> tasksList = taskRepository.findAll();
 		if (Objects.nonNull(tasksList)) {
-			logger.info("Projects retrieved: " + tasksList.size());
+			logger.info("Tasks retrieved: " + tasksList.size());
 			return tasksList.stream().map(taskDao -> new Task(taskDao)).collect(Collectors.toList());
 		}
 		return null;

@@ -23,8 +23,8 @@ public class Project {
 	private String managerFirstName;
 	private String managerLastName;
 	private Long managerEmployeeId;
-	private int numberOfTask;
-	private int numberOfCompletedTask;
+	private int tasksCount;
+	private int completedTasksCount;
 
 	public Project(ProjectDao projectDao) {
 		super();
@@ -37,8 +37,8 @@ public class Project {
 		this.managerFirstName = projectDao.getUser().getFirstName();
 		this.managerLastName = projectDao.getUser().getLastName();
 		this.managerEmployeeId = projectDao.getUser().getEmployeeId();
-		this.numberOfTask = (Objects.nonNull(projectDao.getTasks())) ? projectDao.getTasks().size() : 0;
-		this.numberOfCompletedTask = (Objects.nonNull(projectDao.getTasks()))
+		this.tasksCount = (Objects.nonNull(projectDao.getTasks())) ? projectDao.getTasks().size() : 0;
+		this.completedTasksCount = (Objects.nonNull(projectDao.getTasks()))
 				? (int) projectDao.getTasks().stream().filter(task -> !task.isActive()).count()
 				: 0;
 	}

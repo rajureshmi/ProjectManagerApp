@@ -3,6 +3,7 @@ package com.fse.projmanagement;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
+import java.util.Date;
 import java.util.List;
 
 import org.junit.After;
@@ -62,15 +63,12 @@ public class TaskControllerTest extends TestCase {
 
 	@Test
 	public void testAddTask() throws Exception {
-		User user = new User();
-		user.setFirstName("Test");
-		user.setLastName("Testco");
-		user.setEmployeeId(100110L);
-		user.setActive(true);
-		ResponseEntity<User> response = testRestTemplate.postForEntity(baseUrl.concat("/add"), user, User.class);
+		Task newTask = new Task("Task 6",new Date(2019,6,10),new Date(2019,8,22),16,
+				true,1L,1L,"XYZ",null, null,"Cindy","Melka",100102L);
+		ResponseEntity<User> response = testRestTemplate.postForEntity(baseUrl.concat("/add"), newTask, User.class);
 
 		assertThat(response.getStatusCode(), equalTo(HttpStatus.OK));
-		assertNotNull("User not added", response.getBody());
+		assertNotNull("Task not added", response.getBody());
 	}
 	
 	@Test
