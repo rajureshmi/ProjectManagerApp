@@ -1,0 +1,11 @@
+.footer {
+  text-align: left;
+  top: 2%;
+  border: black solid;
+  margin-top: 5px;
+}
+* {
+  font-style: normal;
+  font-family: "Times New Roman"; 
+  font-size:  10px;
+}

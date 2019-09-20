@@ -1,0 +1,28 @@
+h2 {
+  color:black;
+  text-align: center;
+  border-style: double;
+
+}
+a {
+  color: black;
+  display: inline-block;
+  width:100%;
+  height:100%;
+  text-decoration: none;
+}
+
+* {
+  font-family: "Times New Roman";
+  font-style: normal;
+}
+.active
+{
+  background-color: grey;
+}
+#addTaskDiv,#viewTaskDiv, #addUserDiv, #addProjectDiv {
+  border-style: double;
+  border-color: black;
+  text-align: center;
+  font-family: "Times New Roman";
+}
