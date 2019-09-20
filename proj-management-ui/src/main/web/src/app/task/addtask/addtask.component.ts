@@ -115,9 +115,7 @@ export class AddtaskComponent implements OnInit {
         if (!this.taskModel.projectId) {
           this.projectErrorMessage = "Project is required";
         }
-        if (!this.taskModel.parentId) {
-          this.parentTaskErrorMessage = "Parent Task is required";
-        }
+        
         return false;
       }
       const startDateParts = this.taskModel.startDateString.split('-');
@@ -201,7 +199,7 @@ export class AddtaskComponent implements OnInit {
     if (this.selectedProjectId) {
       var project = this.projects.filter(project => project.projectId == this.selectedProjectId)[0];
       this.taskModel.projectId = project.projectId;
-      this.taskModel.projectName = project.projectName;
+      this.taskModel.projectName =  project.projectName;
       this.projectErrorMessage = undefined;
     }
     this.modalService.dismissAll();

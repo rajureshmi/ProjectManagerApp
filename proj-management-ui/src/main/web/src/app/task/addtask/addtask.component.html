@@ -31,7 +31,7 @@
     <div class="form-group form-inline">
       <label>Parent Task</label>
       <input type="text" placeholder="Select Parent Task" [disabled]="true" required class="form-control"
-             value="{{taskModel.parentId}} - {{taskModel.parentTask}}" autocomplete="off">
+             value="{{taskModel.parentId}} - {{taskModel.parentTaskName}}" autocomplete="off">
       <button type="button" [disabled]="isParentTask" (click)="openParentTaskSubModel(contentparenttask)" style="margin-left: 25px" class="glyphicon glyphicon-check">Search</button>
       <small class="text-danger" [class.d-none]="!parentTaskErrorMessage">{{parentTaskErrorMessage}}</small>
     </div>
@@ -90,7 +90,7 @@
       <div class="form-group form-inline">
         <label class="modelLabel">Parent Task</label>
         <select class="form-control selectInput" id="selectedParentTaskId" name="selectedParentTaskId" [(ngModel)]="selectedParentTaskId">
-          <option *ngFor="let indParentTask of parentTasks" value="{{indParentTask.parentId}}">{{indParentTask.parentId}} - {{indParentTask.parentTaskName}}</option>
+          <option *ngFor="let indParentTask of parentTasks" value="{{indParentTask.parentTaskId}}">{{indParentTask.parentTaskId}} - {{indParentTask.parentTaskName}}</option>
         </select>
       </div>
       <button id="selectParentTask" class="btn btn-primary" (click)="selectParentTask()">Select</button>
