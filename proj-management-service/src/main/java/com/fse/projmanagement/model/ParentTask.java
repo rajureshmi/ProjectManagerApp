@@ -11,12 +11,12 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ParentTask {
 
-	private Long parentId;
+	private Long parentTaskId;
 	private String parentTaskName;
 	
 	public ParentTask(ParentTaskDao parentTaskDao) {
 		super();
-		this.parentId = parentTaskDao.getParentId();
+		this.parentTaskId = parentTaskDao.getParentId();
 		this.parentTaskName = parentTaskDao.getParentTaskName();
 	}
 

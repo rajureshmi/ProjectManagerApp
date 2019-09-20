@@ -50,15 +50,15 @@ public class TaskDao {
 	@Column(name = "Status")
 	private boolean isActive;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name = "Parent_ID")
 	private ParentTaskDao parentTask;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name = "Project_ID")
 	private ProjectDao project;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name = "User_ID")
 	private UserDao user;
 

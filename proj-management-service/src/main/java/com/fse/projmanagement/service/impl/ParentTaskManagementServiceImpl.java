@@ -39,7 +39,7 @@ public class ParentTaskManagementServiceImpl implements ParentTaskManagementServ
 		ParentTaskDao addedProject = parentTaskRepository.saveAndFlush(parentTaskDao);
 		if (Objects.nonNull(addedProject)) {
 			logger.info("ParentTask added successfully. Id: : "+ addedProject.getParentId());
-			parentTaskToAdd.setParentId(addedProject.getParentId());
+			parentTaskToAdd.setParentTaskId(addedProject.getParentId());
 			return parentTaskToAdd;
 		}
 		return null;

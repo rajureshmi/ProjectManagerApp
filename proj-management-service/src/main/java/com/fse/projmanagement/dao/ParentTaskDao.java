@@ -30,7 +30,7 @@ public class ParentTaskDao {
 
 	public ParentTaskDao(ParentTask parentTask) {
 		super();
-		this.parentId = parentTask.getParentId();
+		this.parentId = parentTask.getParentTaskId();
 		this.parentTaskName = parentTask.getParentTaskName();
 	}
 	
