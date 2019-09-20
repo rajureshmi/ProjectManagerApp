@@ -75,6 +75,7 @@ public class TaskManagementServiceImpl implements TaskManagementService {
 		TaskDao taskDao = taskRepository.findByTaskId(taskToBeUpdated.getTaskId());
 		taskDao.setStartDate(taskToBeUpdated.getStartDate());
 		taskDao.setEndDate(taskToBeUpdated.getEndDate());
+		taskDao.setTaskName(taskToBeUpdated.getTaskName());
 		taskDao.setPriority(taskToBeUpdated.getPriority());
 		taskDao.setParentTask(getParentTaskForTask(taskToBeUpdated));
 		taskDao.setUser(getUserForTask(taskToBeUpdated));
