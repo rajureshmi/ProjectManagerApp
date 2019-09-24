@@ -13,15 +13,15 @@ import com.fse.projmanagement.model.Task;
 public interface TaskControllerEndpoint {
 
 	@PostMapping(path = "/add")
-	public ResponseEntity<Object> addTask(@RequestBody Task task);
+	public ResponseEntity<Task> addTask(@RequestBody Task task);
 
 	@PutMapping(path = "/update")
-	public ResponseEntity<Object> updateTask(@RequestBody Task task);
+	public ResponseEntity<Task> updateTask(@RequestBody Task task);
 
 	@GetMapping(path = "/all")
 	public ResponseEntity<List<Task>> getTasks();
 
 	@PutMapping(path = "/complete")
-	public ResponseEntity<Object> completeTask(@RequestBody Task task);
+	public ResponseEntity<String> completeTask(@RequestBody Task task);
 
 }

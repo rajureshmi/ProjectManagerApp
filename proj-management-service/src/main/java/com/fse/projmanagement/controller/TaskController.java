@@ -22,7 +22,7 @@ public class TaskController implements TaskControllerEndpoint {
 	private TaskManagementService taskManagementService;
 
 	@Override
-	public ResponseEntity<Object> addTask(Task taskToBeAdded) {
+	public ResponseEntity<Task> addTask(Task taskToBeAdded) {
 		if (Objects.nonNull(taskToBeAdded)) {
 			Task addedTask = taskManagementService.addTask(taskToBeAdded);
 			if (Objects.nonNull(addedTask)) {
@@ -36,7 +36,7 @@ public class TaskController implements TaskControllerEndpoint {
 	}
 
 	@Override
-	public ResponseEntity<Object> updateTask(Task taskToUpdate) {
+	public ResponseEntity<Task> updateTask(Task taskToUpdate) {
 		if (Objects.nonNull(taskToUpdate)) {
 			Task updatedTask = taskManagementService.updateTask(taskToUpdate);
 			if (Objects.nonNull(updatedTask)) {
@@ -60,7 +60,7 @@ public class TaskController implements TaskControllerEndpoint {
 	}
 
 	@Override
-	public ResponseEntity<Object> completeTask(Task taskToComplete) {
+	public ResponseEntity<String> completeTask(Task taskToComplete) {
 		if (Objects.nonNull(taskToComplete)) {
 			taskManagementService.endTask(taskToComplete);	
 			return new ResponseEntity<>( HttpStatus.OK);

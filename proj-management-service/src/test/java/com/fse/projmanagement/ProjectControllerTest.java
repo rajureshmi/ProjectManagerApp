@@ -21,7 +21,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.fse.projmanagement.model.Task;
+import com.fse.projmanagement.model.Project;
 
 import junit.framework.TestCase;
 
@@ -29,7 +29,7 @@ import junit.framework.TestCase;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ContextConfiguration(classes = ProjManagementServiceApplication.class)
 @ActiveProfiles("test")
-public class TaskControllerTest extends TestCase {
+public class ProjectControllerTest extends TestCase {
 
 	@Value("${local.server.port}")
 	private Integer port;
@@ -39,7 +39,7 @@ public class TaskControllerTest extends TestCase {
 	@Before
 	public void setUp() throws Exception {
 		super.setUp();
-		baseUrl = "http://localhost:".concat(port.toString()).concat("/projectmanagement/api/task");
+		baseUrl = "http://localhost:".concat(port.toString()).concat("/projectmanagement/api/project");
 		testRestTemplate = new TestRestTemplate();
 	}
 
@@ -51,54 +51,53 @@ public class TaskControllerTest extends TestCase {
 	}
 
 	@Test
-	public void testFetchTasks() throws Exception {
-		ResponseEntity<List<Task>> response = testRestTemplate.exchange(baseUrl.concat("/all"), HttpMethod.GET, null,
-				new ParameterizedTypeReference<List<Task>>() {
+	public void testFetchProjects() throws Exception {
+		ResponseEntity<List<Project>> response = testRestTemplate.exchange(baseUrl.concat("/all"), HttpMethod.GET,
+				null, new ParameterizedTypeReference<List<Project>>() {
 				});
 
 		assertThat(response.getStatusCode(), equalTo(HttpStatus.OK));
-		assertNotNull("Task list is null", response.getBody());		
+		assertNotNull("Project list is null", response.getBody());
 	}
 
 	@Test
-	public void testAddTask() throws Exception {
-		Task newTask = new Task("Task 6",new Date(2019,6,10),new Date(2019,8,22),16,
-				true,1L,1L,"XYZ",null, null,"Cindy","Melka",100102L);
-		ResponseEntity<Task> response = testRestTemplate.postForEntity(baseUrl.concat("/add"), newTask, Task.class);
+	public void testAddProject() throws Exception {
+		Project project = new Project("Regulatory",new Date(2019,6,10),new Date(2019,12,30),15,3L,"Cindy","Melka",100102L);
+		ResponseEntity<Project> response = testRestTemplate.postForEntity(baseUrl.concat("/add"), project,
+				Project.class);
 
 		assertThat(response.getStatusCode(), equalTo(HttpStatus.OK));
-		assertNotNull("Task not added", response.getBody());
+		assertNotNull("Project not added", response.getBody());
 	}
 	
 	@Test
-	public void testUpdateTask() throws Exception {
-		
-		ResponseEntity<List<Task>> resp = testRestTemplate.exchange(baseUrl.concat("/all"), HttpMethod.GET, null,
-				new ParameterizedTypeReference<List<Task>>() {
+	public void testUpdateProject() throws Exception {
+		ResponseEntity<List<Project>> resp = testRestTemplate.exchange(baseUrl.concat("/all"), HttpMethod.GET,
+				null, new ParameterizedTypeReference<List<Project>>() {
 				});
-		List<Task> taskList = resp.getBody();
-		//change task name and priority
-		Task updatedTask = taskList.get(1);
-		updatedTask.setTaskName("Add test cases");
-		updatedTask.setPriority(20);
-		ResponseEntity<Task> response = testRestTemplate.postForEntity(baseUrl.concat("/update"), updatedTask, Task.class);
+		List<Project> projs = resp.getBody();
+		Project project = projs.get(1);
 
+		ResponseEntity<Project> response = testRestTemplate.postForEntity(baseUrl.concat("/update"), project,
+				Project.class);
+		
 		assertThat(response.getStatusCode(), equalTo(HttpStatus.OK));
-		assertNotNull("Task not updated", response.getBody());
+		assertNotNull("Project not updated", response.getBody());
 	}
 	
 	@Test
-	public void testCompleteTask() throws Exception {
-		ResponseEntity<List<Task>> resp = testRestTemplate.exchange(baseUrl.concat("/all"), HttpMethod.GET, null,
-				new ParameterizedTypeReference<List<Task>>() {
+	public void testSuspendProject() throws Exception {
+		ResponseEntity<List<Project>> resp = testRestTemplate.exchange(baseUrl.concat("/all"), HttpMethod.GET,
+				null, new ParameterizedTypeReference<List<Project>>() {
 				});
-		List<Task> taskList = resp.getBody();
-		Task completedTask = taskList.get(1);
-		ResponseEntity<Task> response = testRestTemplate.postForEntity(baseUrl.concat("/complete"), completedTask, Task.class);
+		List<Project> projs = resp.getBody();
+		Project project = projs.get(1);
 
+		ResponseEntity<String> response = testRestTemplate.postForEntity(baseUrl.concat("/suspend"), project,
+				String.class);
+		
 		assertThat(response.getStatusCode(), equalTo(HttpStatus.OK));
 		
 	}
-
 
 }

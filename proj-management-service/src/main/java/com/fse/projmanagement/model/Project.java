@@ -43,4 +43,17 @@ public class Project {
 				: 0;
 	}
 
+	public Project(String projectName, Date startDate, Date endDate, int priority, Long managerId,
+			String managerFirstName, String managerLastName, Long managerEmployeeId) {
+		super();
+		this.projectName = projectName;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.priority = priority;
+		this.managerId = managerId;
+		this.managerFirstName = managerFirstName;
+		this.managerLastName = managerLastName;
+		this.managerEmployeeId = managerEmployeeId;
+	}
+
 }
